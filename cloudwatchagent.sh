@@ -17,5 +17,5 @@ sudo rpm -U ./amazon-cloudwatch-agent.rpm
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
 
 # Step 5:
-# Start the Clo
+# Start the CloudWatch Service
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:./amazon-cloudwatch-agent.rpm # Edit the configuration-file-path to where itis stored
