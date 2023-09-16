@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Define the name of your Kind cluster (change as needed)
 CLUSTER_NAME="my-kind-cluster"
 
@@ -13,8 +11,8 @@ fi
 
 # Check if the cluster with the given name already exists
 if kind get clusters | grep -q "$CLUSTER_NAME"; then
-  echo "Cluster '$CLUSTER_NAME' already exists. Exiting..."
-  exit 1
+  echo "Cluster '$CLUSTER_NAME' already exists. Deleting the existing cluster..."
+  kind delete cluster --name "$CLUSTER_NAME"
 fi
 
 # Create a new Kind cluster
@@ -22,7 +20,7 @@ echo "Creating Kind cluster '$CLUSTER_NAME'..."
 kind create cluster --name "$CLUSTER_NAME"
 
 # Get the kubeconfig for the cluster
-KUBECONFIG_PATH=$(kind get kubeconfig-path --name "$CLUSTER_NAME")
+KUBECONFIG_PATH=~/.kube/config
 
 # Set the kubeconfig context to use the new cluster
 kubectl config use-context "kind-$CLUSTER_NAME" --kubeconfig "$KUBECONFIG_PATH"
@@ -32,3 +30,4 @@ kubectl cluster-info
 
 echo "Kind cluster '$CLUSTER_NAME' is deployed and ready for use."
 echo "Kubeconfig is available at: $KUBECONFIG_PATH"
+
