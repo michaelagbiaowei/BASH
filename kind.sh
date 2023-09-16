@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the name of your Kind cluster (change as needed)
-CLUSTER_NAME="kind-cluster"
+CLUSTER_NAME="my-kind-cluster"
 
 # Check if Kind is installed, and if not, install it
 if ! command -v kind &> /dev/null; then
