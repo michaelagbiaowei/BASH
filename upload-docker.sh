@@ -6,17 +6,18 @@
 
 # Step 1:
 # Create dockerpath
-dockerpath=notedapp
+dockerpath=kind-app
+user=maiempire
 
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
-docker login -u maiempire
+docker login -u $user
 
 #Step 3:
 # Tag the images with your Docker ID
-docker tag $dockerpath:latest maiempire/$dockerpath
+docker tag $dockerpath:latest $user/$dockerpath
 
 # Step 4:
 # Push image to a docker repository
-docker push maiempire/$dockerpath
+docker push $user/$dockerpath
